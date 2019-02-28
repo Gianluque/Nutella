@@ -62,8 +62,8 @@ void Masksignal(char signal[]){
 	char i=0;
 	
 	do{
-		signal[i]   = (signal[i] << 2 | signal[i+1]>>6);
-		signal[i]   = (signal[i] & 0b01111111);
+		signal[i]   = (signal[i] << 2 | signal[i+1] >> 6);
+		i==0        ? (signal[i]=(signal[i] & 0b01111111)) : (signal[i]=(signal[i] | 0b10000000));
 		signal[i+1] =  signal[i+1] << 2 ;
 		signal[i+1] = (signal[i+1] & 0b00111111) | 0b10000000;
 		i+=2;

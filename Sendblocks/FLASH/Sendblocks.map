@@ -41,7 +41,7 @@ Section Name                    Size  Type     From       To       Segment
 .startData                        18     R     0x20C8     0x20D9   ROM
 NON_BANKED                       352     R     0x20DA     0x2239   ROM
 .copy                              2     R     0x223A     0x223B   ROM
-.text                            347     R     0x8000     0x815A   PPAGE_0
+.text                            387     R     0x8000     0x8182   PPAGE_0
 .abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg0
 .abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg1
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg2
@@ -226,14 +226,14 @@ NON_BANKED                       352     R     0x20DA     0x2239   ROM
 .abs_section_1870                  2   N/I     0x1870     0x1871   .absSeg181
 .abs_section_ffc0                 64     R     0xFFC0     0xFFFF   .absSeg182
 .bss                              12   R/W       0xA0       0xAB   RAM
-AD1_CODE                          82     R     0x815B     0x81AC   PPAGE_0
-AS1_CODE                         202     R     0x81AD     0x8276   PPAGE_0
-TI1_CODE                          20     R     0x8277     0x828A   PPAGE_0
+AD1_CODE                          82     R     0x8183     0x81D4   PPAGE_0
+AS1_CODE                         202     R     0x81D5     0x829E   PPAGE_0
+TI1_CODE                          20     R     0x829F     0x82B2   PPAGE_0
 .common                            7   R/W       0xAC       0xB2   RAM
 .stack                           512   R/W       0xB3      0x2B2   RAM
 
 Summary of section sizes per section type:
-READ_ONLY (R):         489 (dec:     1161)
+READ_ONLY (R):         4B1 (dec:     1201)
 READ_WRITE (R/W):      213 (dec:      531)
 NO_INIT (N/I):          CF (dec:      207)
 
@@ -258,9 +258,9 @@ MODULE:                 -- Events_c.obj --
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
      SendData                                  8016      1E      30       2   .text       
-     Masksignal                                8034      48      72       2   .text       
-     DigitalSig                                807C      18      24       2   .text       
-     main                                      8094      33      51       2   .text       
+     Masksignal                                8034      70     112       2   .text       
+     DigitalSig                                80A4      18      24       2   .text       
+     main                                      80BC      33      51       2   .text       
 - VARIABLES:
      flag                                        A0       1       1       3   .bss        
 MODULE:                 -- start08_c.obj --
@@ -275,10 +275,10 @@ MODULE:                 -- start08_c.obj --
 MODULE:                 -- AD1_c.obj --
 - PROCEDURES:
      AD1_Interrupt                             215F      1A      26       1   NON_BANKED  
-     AD1_HWEnDi                                815B       D      13       2   AD1_CODE    
-     AD1_Measure                               8168      20      32       2   AD1_CODE    
-     AD1_GetValue                              8188      15      21       2   AD1_CODE    
-     AD1_Init                                  819D      10      16       2   AD1_CODE    
+     AD1_HWEnDi                                8183       D      13       2   AD1_CODE    
+     AD1_Measure                               8190      20      32       2   AD1_CODE    
+     AD1_GetValue                              81B0      15      21       2   AD1_CODE    
+     AD1_Init                                  81C5      10      16       2   AD1_CODE    
 - VARIABLES:
      OutFlg                                      A1       1       1       4   .bss        
      ModeFlg                                     A2       1       1       6   .bss        
@@ -288,8 +288,8 @@ MODULE:                 -- AS1_c.obj --
      AS1_InterruptRx                           2179      45      69       1   NON_BANKED  
      AS1_InterruptTx                           21BE      5C      92       1   NON_BANKED  
      AS1_InterruptError                        221A      12      18       1   NON_BANKED  
-     AS1_SendBlock                             81AD      A0     160       2   AS1_CODE    
-     AS1_Init                                  824D      2A      42       2   AS1_CODE    
+     AS1_SendBlock                             81D5      A0     160       2   AS1_CODE    
+     AS1_Init                                  8275      2A      42       2   AS1_CODE    
 - VARIABLES:
      SerFlag                                     A3       1       1      11   .bss        
      BufferRead                                  A4       1       1       1   .bss        
@@ -300,7 +300,7 @@ MODULE:                 -- AS1_c.obj --
      AS1_OutLen                                  AE       1       1       6   .common     
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
-     PE_low_level_init                         80C7      94     148       2   .text       
+     PE_low_level_init                         80EF      94     148       2   .text       
      Cpu_Interrupt                             2080       4       4      26   .init       
      _EntryPoint                               2084      44      68       1   .init       
 - VARIABLES:
@@ -496,7 +496,7 @@ MODULE:                 -- IO_Map_c.obj --
 MODULE:                 -- TI1_c.obj --
 - PROCEDURES:
      TI1_Interrupt                             222C       E      14       1   NON_BANKED  
-     TI1_Init                                  8277      14      20       2   TI1_CODE    
+     TI1_Init                                  829F      14      20       2   TI1_CODE    
 - VARIABLES:
 MODULE:                 -- Vectors_c.obj --
 - PROCEDURES:
@@ -508,7 +508,7 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   Events_c.obj                                 0     22      0
-  main_c.obj                                   1    177      0
+  main_c.obj                                   1    217      0
   start08_c.obj                                0    133      0
   AD1_c.obj                                    4    108      0
   AS1_c.obj                                   10    381      0
@@ -1123,17 +1123,17 @@ OBJECT LIST SORTED BY ADDRESS
      AS1_OnFreeTxBuf                           8014       1       1       2   .text       
      AD1_OnEnd                                 8015       1       1       2   .text       
      SendData                                  8016      1E      30       2   .text       
-     Masksignal                                8034      48      72       2   .text       
-     DigitalSig                                807C      18      24       2   .text       
-     main                                      8094      33      51       2   .text       
-     PE_low_level_init                         80C7      94     148       2   .text       
-     AD1_HWEnDi                                815B       D      13       2   AD1_CODE    
-     AD1_Measure                               8168      20      32       2   AD1_CODE    
-     AD1_GetValue                              8188      15      21       2   AD1_CODE    
-     AD1_Init                                  819D      10      16       2   AD1_CODE    
-     AS1_SendBlock                             81AD      A0     160       2   AS1_CODE    
-     AS1_Init                                  824D      2A      42       2   AS1_CODE    
-     TI1_Init                                  8277      14      20       2   TI1_CODE    
+     Masksignal                                8034      70     112       2   .text       
+     DigitalSig                                80A4      18      24       2   .text       
+     main                                      80BC      33      51       2   .text       
+     PE_low_level_init                         80EF      94     148       2   .text       
+     AD1_HWEnDi                                8183       D      13       2   AD1_CODE    
+     AD1_Measure                               8190      20      32       2   AD1_CODE    
+     AD1_GetValue                              81B0      15      21       2   AD1_CODE    
+     AD1_Init                                  81C5      10      16       2   AD1_CODE    
+     AS1_SendBlock                             81D5      A0     160       2   AS1_CODE    
+     AS1_Init                                  8275      2A      42       2   AS1_CODE    
+     TI1_Init                                  829F      14      20       2   TI1_CODE    
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
      _vect                                     FFC0      40      64       0   .abs_section_ffc0
@@ -1272,5 +1272,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 9
-Total size of all blocks to be downloaded: 1161
+Total size of all blocks to be downloaded: 1201
 
