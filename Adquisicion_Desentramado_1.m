@@ -10,11 +10,11 @@ s=1;
 while s
     %busqueda de inicio y adquisicion de bytes
     while a>127
-        a=fread(puerto); 
+        a=fread(puerto,1); 
     end
-    b=fread(puerto);
-    c=fread(puerto);
-    d=fread(puerto);
+    b=fread(puerto,1);
+    c=fread(puerto,1);
+    d=fread(puerto,1);
     
     %cambio de doble a uint8
     a=uint8(a);
