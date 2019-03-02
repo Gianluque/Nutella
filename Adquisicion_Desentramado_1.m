@@ -1,20 +1,26 @@
 puerto=serial('COM8','BaudRate',115200,'Terminator','LF')   %Crea el objeto de matlab que lee y usa el puerto
 fopen(puerto); %abre el puerto
     %inicializa las variables de llegada
-a=uint8(128);
-b=uint8(0);
-c=uint8(0);
-d=uint8(0);
+a=128;
+b=0;
+c=0;
+d=0;
     %contador de ciclos para prueba
 s=1; 
 while s
     %busqueda de inicio y adquisicion de bytes
     while a>127
-        a=fgets(puerto); 
+        a=fread(puerto); 
     end
-    b=fgets(puerto);
-    c=fgets(puerto);
-    d=fgets(puerto);
+    b=fread(puerto);
+    c=fread(puerto);
+    d=fread(puerto);
+    
+    %cambio de doble a uint8
+    a=uint8(a);
+    b=uint8(b);
+    c=uint8(c);
+    d=uint8(d);
     
     %conversion bytes a char para recortar los datos de canal
     a1=dec2bin(a,8);
@@ -40,6 +46,8 @@ while s
     s=s-1;
 end
 
+disp(ch1)
+disp(ch2)
 
 fclose(puerto);             %cierra el puerto para poder usarlo otra vez con otra cosa
 delete(puerto);             %elimina la variable para que no quede ocupando nada
