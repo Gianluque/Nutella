@@ -10,11 +10,11 @@ s=1;
 while s
     %busqueda de inicio y adquisicion de bytes
     while a>127
-        a=fread(puerto,'uint8'); 
+        a=fgets(puerto); 
     end
-    b=fread(puerto,'uint8');
-    c=fread(puerto,'uint8');
-    d=fread(puerto,'uint8');
+    b=fgets(puerto);
+    c=fgets(puerto);
+    d=fgets(puerto);
     
     %conversion bytes a char para recortar los datos de canal
     a1=dec2bin(a,8);
@@ -36,6 +36,8 @@ while s
     ch1=bin2dec(ch1_char);
     ch2=bin2dec(ch2_char);
     
+    %descuento al contador
+    s=s-1;
 end
 
 
