@@ -177,6 +177,9 @@ if canales==1
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
+        if s==0
+        break
+        end        
         plot(time,ch1_plot,time,ch2_plot);
         drawnow update
     end
@@ -212,6 +215,9 @@ elseif s==1
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
         digit_1(1)=chd2*Amplitud_ch1;
+        if s==0
+        break
+        end
         plot(time,digit_1,time,digit_2);
         drawnow update;
     end
