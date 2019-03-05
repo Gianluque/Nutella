@@ -74,7 +74,7 @@ dac=3/(2^12);
 global ini;
 ini=0;
 global fini;
-fini=30;
+fini=500;
 global timeBase;
 timeBase=10;
 global time;
@@ -211,8 +211,8 @@ while s
     plot(time,ch1_plot,time,ch2_plot);
     
     %sin valores en los ejes
-    yticklabels({})
-    xticklabels({})
+    %yticklabels({})
+    %xticklabels({})
     drawnow update
 end
 
@@ -225,7 +225,7 @@ function selectorCanal_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns selectorCanal contents as cell array
 cla
 global canales;
-canales=get(sselectorCanal,'Value');
+canales=get(selecttorCanal,'Value');
 global puerto;
 global Amplitud_ch1;
 global Amplitud_ch2;
@@ -299,8 +299,8 @@ switch (canales)
         plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
         end    
     case 2
@@ -339,8 +339,8 @@ switch (canales)
         plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
     end
 end
@@ -448,8 +448,8 @@ switch (canales)
         plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
         end    
     case 2
@@ -488,8 +488,8 @@ switch (canales)
         plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
     end
 end
@@ -599,8 +599,8 @@ switch (canales)
         plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
         end    
     case 2
@@ -639,8 +639,8 @@ switch (canales)
         plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
     end
 end
@@ -753,8 +753,8 @@ switch (canales)
         plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
         end    
     case 2
@@ -793,8 +793,8 @@ switch (canales)
         plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
-        yticklabels({})
-        xticklabels({})
+        %yticklabels({})
+        %xticklabels({})
         drawnow update
     end
 end
