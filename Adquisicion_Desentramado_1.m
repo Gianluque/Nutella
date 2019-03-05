@@ -6,7 +6,7 @@ b=0;
 c=0;
 d=0;
     %contador de ciclos para prueba
-s=1; 
+s=100; 
 while s
     %busqueda de inicio y adquisicion de bytes
     while a>127

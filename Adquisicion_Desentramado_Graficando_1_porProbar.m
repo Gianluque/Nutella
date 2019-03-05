@@ -2,7 +2,7 @@
 puerto=serial('COM8','BaudRate',115200,'Terminator','LF')   %Crea el objeto de matlab que lee y usa el puerto
 fopen(puerto); %abre el puerto
 %inicializa variables para plot
-k=100;
+k=50;
 x=[1:k];
 ch1_plot=zeros(1,k);
 ch2_plot=zeros(1,k);
@@ -15,9 +15,9 @@ b=0;
 c=0;
 d=0;
     %contador de ciclos para prueba
-s=1; 
+s=100; 
 
-while s
+while 1
     %busqueda de inicio y adquisicion de bytes
     while a>127
         a=fread(puerto,1); 

@@ -1,5 +1,5 @@
 %configuracion de puerto
-puerto=serial('COM1','BaudRate',115200,'Terminator','LF')   %Crea el objeto de matlab que lee y usa el puerto
+puerto=serial('COM8','BaudRate',115200,'Terminator','LF')   %Crea el objeto de matlab que lee y usa el puerto
 fopen(puerto); %abre el puerto
 %inicializa variables para plot
 k=100;

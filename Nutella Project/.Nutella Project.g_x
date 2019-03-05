@@ -1,0 +1,43 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Documentation/Nutella Project_Settings.xml" FileDate="2019-03-04, 19:49:30" FileAge="1551745170912" FileType="3072" />
+      <File Name="Generated_Code/TI1.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170837" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/Led1.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170817" FileType="45637" CompNumb="11" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2019-03-04, 19:49:30" FileAge="1551745170702" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/Bit2.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170781" FileType="45637" CompNumb="22" />
+      <File Name="Generated_Code/TI1.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170832" FileType="45637" CompNumb="10" />
+      <File Name="Generated_Code/Bit2.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170771" FileType="45637" CompNumb="22" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170717" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170695" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170746" FileType="45637" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170712" FileType="45637" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2019-02-25, 12:07:05" FileAge="1551112625943" FileType="131328" />
+      <File Name="Sources/Events.c" FileDate="2019-02-25, 11:08:08" FileAge="1551109088113" FileType="131328" />
+      <File Name="Generated_Code/Bit1.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170800" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170761" FileType="45637" />
+      <File Name="Generated_Code/AD1.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170876" FileType="45637" CompNumb="8" />
+      <File Name="Documentation/Nutella Project_SIGNALS.txt" FileDate="2019-03-04, 19:58:12" FileAge="1551745692283" FileType="3072" />
+      <File Name="Generated_Code/Bit1.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170790" FileType="45637" CompNumb="21" />
+      <File Name="Generated_Code/AD1.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170866" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170741" FileType="45637" />
+      <File Name="Documentation/Nutella Project.txt" FileDate="2019-03-04, 19:49:30" FileAge="1551745170922" FileType="3072" />
+      <File Name="Sources/main.c" FileDate="2019-02-27, 14:45:31" FileAge="1551294931409" FileType="128" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170751" FileType="45637" />
+      <File Name="Generated_Code/AS1.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170856" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170728" FileType="45637" />
+      <File Name="Generated_Code/AS1.c" FileDate="2019-03-04, 19:49:30" FileAge="1551745170847" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/Led1.h" FileDate="2019-03-04, 19:49:30" FileAge="1551745170826" FileType="45637" CompNumb="11" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>3</CodeGenReference>
+</CodeGenerationInfo>

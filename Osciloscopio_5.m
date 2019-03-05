@@ -22,7 +22,7 @@ function varargout = Osciloscopio_5(varargin)
 
 % Edit the above text to modify the response to help Osciloscopio_5
 
-% Last Modified by GUIDE v2.5 04-Mar-2019 23:44:19
+% Last Modified by GUIDE v2.5 05-Mar-2019 09:43:39
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -174,16 +174,20 @@ if canales==1
         ch2=bin2dec(ch2_char);
     
         %grafico de canales
-  
+        pause(0.05)
         ch1_plot = circshift(ch1_plot,1);
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        if s==0
+        
+        stop = get(handles.Parar,'UserData');
+        if stop==0
+
         break
         end        
         plot(time,ch1_plot,time,ch2_plot);
-        drawnow update
+        drawnow;
+       
     end
 %canales Digitales    
 elseif z==1
@@ -220,8 +224,9 @@ elseif z==1
         if z==0
         break
         end
+        pause(0.05)
         plot(time,digit_1,time,digit_2);
-        drawnow update;
+        drawnow;
     end
     end
     s=0;
@@ -233,11 +238,12 @@ function Parar_Callback(hObject, eventdata, handles)
 % hObject    handle to Parar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(hObject,'UserData',false);
 cla
-global z;
-global s;
-s=0;
-z=0;
+%global z;
+%global s;
+%s=0;
+%z=0;
 
 % --- Executes on selection change in selectorCanal.
 function selectorCanal_Callback(hObject, eventdata, handles)
@@ -404,5 +410,12 @@ s=1;
 % --- Executes on mouse press over axes background.
 function Pantalla_ButtonDownFcn(hObject, eventdata, handles)
 % hObject    handle to Pantalla (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes during object deletion, before destroying properties.
+function selectorCanal_DeleteFcn(hObject, eventdata, handles)
+% hObject    handle to selectorCanal (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)

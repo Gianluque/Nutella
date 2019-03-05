@@ -181,7 +181,7 @@ while get(handles.On_Off,'Value')==1
         ch2_plot = circshift(ch2_plot,1);        
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        pause(0.01);        
+        pause(0.1);        
         %grafico de canales
         cla;
         if get(handles.Alog_1,'Value')==1

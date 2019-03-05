@@ -137,7 +137,7 @@ global b;
 global c;
 global d;
 %canales Analogicos
-while get(handles.selectorCanal)~=3
+while get(handles.selectorCanal,'Value')~=3
     while get(handles.selectorCanal,'Value')==1
     %busqueda de inicio y adquisicion de bytes
          while a>127

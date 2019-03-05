@@ -15,16 +15,20 @@ b=0;
 c=0;
 d=0;
     %contador de ciclos para prueba
-    aux=[128 0 0 0];
+    
 s=1; 
 while s
-    while aux(1)>127
-        aux=fread(puerto,[1,4],'uint8'); 
+    aux=[0 0 0 0 0 0 0];
+    aux=fread(puerto,[1,7],'uint8'); 
+    i=1;
+    while aux(i)>127
+        i=i+1;
     end
-    a=uint8(aux(1));
-    b=uint8(aux(2));
-    c=uint8(aux(3));
-    d=uint8(aux(4));
+
+      a=aux(i);
+      b=aux(i+1);
+      c=aux(i+2);
+      d=aux(i+3);
     
     %conversion bytes a char para recortar los datos de canal
     a1=dec2bin(a,8);
