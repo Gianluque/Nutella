@@ -133,8 +133,8 @@ global puerto
 global s;
 s=0;
 pause(1);
-fclose(puerto);             %cierra el puerto para poder usarlo otra vez con otra cosa
-delete(puerto);             %elimina la variable para que no quede ocupando nada
+%fclose(puerto);             %cierra el puerto para poder usarlo otra vez con otra cosa
+%delete(puerto);             %elimina la variable para que no quede ocupando nada
 
 % --- Executes on button press in Start.
 function Start_Callback(hObject, eventdata, handles)
@@ -208,7 +208,7 @@ while s
     ch2_plot = circshift(ch2_plot,1);
     ch1_plot(1)=ch1*Amplitud_ch1*dac;
     ch2_plot(1)=ch2*Amplitud_ch2*dac;
-    plot(x,ch1_plot,x,ch2_plot);
+    plot(time,ch1_plot,time,ch2_plot);
     
     %sin valores en los ejes
     yticklabels({})
@@ -296,7 +296,7 @@ switch (canales)
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        plot(x,ch1_plot,x,ch2_plot);
+        plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
         yticklabels({})
@@ -336,7 +336,7 @@ switch (canales)
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
         digit_1(1)=chd2*Amplitud_ch1;
-        plot(x,digit_1,x,digit_2);
+        plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
         yticklabels({})
@@ -445,7 +445,7 @@ switch (canales)
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        plot(x,ch1_plot,x,ch2_plot);
+        plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
         yticklabels({})
@@ -485,7 +485,7 @@ switch (canales)
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
         digit_1(1)=chd2*Amplitud_ch1;
-        plot(x,digit_1,x,digit_2);
+        plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
         yticklabels({})
@@ -596,7 +596,7 @@ switch (canales)
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        plot(x,ch1_plot,x,ch2_plot);
+        plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
         yticklabels({})
@@ -636,7 +636,7 @@ switch (canales)
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
         digit_1(1)=chd2*Amplitud_ch1;
-        plot(x,digit_1,x,digit_2);
+        plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
         yticklabels({})
@@ -684,6 +684,7 @@ switch aux
     case 3
         timeBase=1000;
 end
+global time;
 time=linspace(ini,fini,timeBase);
 global ch1_plot;
 ch1_plot=zeros(1,length(time));
@@ -749,7 +750,7 @@ switch (canales)
         ch2_plot = circshift(ch2_plot,1);
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
         ch2_plot(1)=ch2*Amplitud_ch2*dac;
-        plot(x,ch1_plot,x,ch2_plot);
+        plot(time,ch1_plot,time,ch2_plot);
     
         %sin valores en los ejes
         yticklabels({})
@@ -789,7 +790,7 @@ switch (canales)
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
         digit_1(1)=chd2*Amplitud_ch1;
-        plot(x,digit_1,x,digit_2);
+        plot(time,digit_1,time,digit_2);
     
         %sin valores en los ejes
         yticklabels({})
