@@ -1,30 +1,5 @@
 function varargout = Osciloscopio_20(varargin)
-% OSCILOSCOPIO_20 MATLAB code for Osciloscopio_20.fig
-%      OSCILOSCOPIO_20, by itself, creates a new OSCILOSCOPIO_20 or raises the existing
-%      singleton*.
-%
-%      H = OSCILOSCOPIO_20 returns the handle to a new OSCILOSCOPIO_20 or the handle to
-%      the existing singleton*.
-%
-%      OSCILOSCOPIO_20('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in OSCILOSCOPIO_20.M with the given input arguments.
-%
-%      OSCILOSCOPIO_20('Property','Value',...) creates a new OSCILOSCOPIO_20 or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before Osciloscopio_20_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to Osciloscopio_20_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help Osciloscopio_20
-
-% Last Modified by GUIDE v2.5 15-Mar-2019 21:46:32
-
-% Begin initialization code - DO NOT EDIT
+% Codigo de Inicializacion Aplicacion
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -41,40 +16,44 @@ if nargout
 else
     gui_mainfcn(gui_State, varargin{:});
 end
-% End initialization code - DO NOT EDIT
+
 end
 
-% --- Executes just before Osciloscopio_20 is made visible.
-function Osciloscopio_20_OpeningFcn(hObject, ~, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to Osciloscopio_20 (see VARARGIN)
 
-% Choose default command line output for Osciloscopio_20
+function Osciloscopio_20_OpeningFcn(hObject, ~, handles, varargin)
+%Inicializacion de variables a usar
 handles.output = hObject;
 
-% Update handles structure
 guidata(hObject, handles);
-global puerto;
-puerto=serial('COM8','BaudRate',115200,'Terminator','LF');   %Crea el objeto de matlab que lee y usa el puerto
+global puerto; %Crea el objeto puerto
+puerto=serial('COM8','BaudRate',115200,'Terminator','LF');   %Configutaciond e los parametros del puerto
 fopen(puerto); %abre el puerto
-%Arrays para plot (se ejecuta al cambio de timeBase)
+
+%Variables utilizadas en la Aplicacion
+
+%Bases de Amplitud
 global Amplitud_ch1;
 global Amplitud_ch2;
 Amplitud_ch1=1;
 Amplitud_ch2=1;
+
+%Factor de conversion Digital Analogico (porque es a 12bit de presicion)
 global dac;
 dac=3/(2^12);
+
+%Numero de puntos a plotear
 global ini;
 ini=0;
 global fini;
-fini=500;
+fini=1000;
+
+%Base de tiempo
 global timeBase;
 timeBase=10;
 global time;
 time=linspace(ini,fini,timeBase);
+
+%Arreglos a plotear para los canales
 global ch1_plot;
 ch1_plot=zeros(1,length(time));
 global ch2_plot;
@@ -83,7 +62,8 @@ global digit_1;
 digit_1=zeros(1,length(time));
 global digit_2;
 digit_2=zeros(1,length(time));
-%inicializa variables de llegada;
+
+%inicializa variables auxiliares;
 global a;
 a=128;
 global b;
@@ -92,11 +72,8 @@ global c;
 c=0;
 global d;
 d=0;
-% UIWAIT makes Osciloscopio_20 wait for user response (see UIRESUME)
-% uiwait(handles.Osciloscopio);
 end
 
-% --- Outputs from this function are returned to the command line.
 function varargout = Osciloscopio_20_OutputFcn(~, ~, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
@@ -107,12 +84,11 @@ function varargout = Osciloscopio_20_OutputFcn(~, ~, handles)
 varargout{1} = handles.output;
 end
 
-% --- Executes on button press in Graficar.
+% Pulsaciond de Graficar.
 function Graficar_Callback(~, ~, handles)
-% hObject    handle to Graficar (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 set(handles.On_Off,'Value',1);
+
+%Variables globales a usar
 global puerto;
 global Amplitud_ch1;
 global Amplitud_ch2;
@@ -122,18 +98,25 @@ global ch1_plot;
 global ch2_plot;
 global digit_1;
 global digit_2;
-buffersize=84;
-%canales Analogicos
 
-
+%Tamano del buffer que recibe los datos del demo
+buffersize=500;
+flush=0;
+%Codigo de graficado
 while get(handles.On_Off,'Value')==1
     %busqueda de inicio y adquisicion de bytes
     aux=fread(puerto,[1,buffersize],'uint8'); 
-    
+        %flush del puerto
+    flush=flush+1;
+    if flush>2
+    flushinput(puerto)
+    flush=0;
+    end
     i=1;
     while aux(i)>127
         i=i+1;
-    end    
+    end  
+    
     bin=dec2bin(aux);    
     while i<(buffersize-4)
        chauxAlog1= strcat(bin(i,3:8),bin(i+1,3:8));
@@ -180,7 +163,7 @@ while get(handles.On_Off,'Value')==1
         hold on;        
         
         if get(handles.Alog_2,'Value')==1
-        stemm(time,ch2_plot,'r');
+        stem(time,ch2_plot,'r');
         end
         if get(handles.Digi_1,'Value')==1
         stem(time,digit_1,'g');
@@ -193,18 +176,14 @@ while get(handles.On_Off,'Value')==1
         end
         i=i+4;
     end
-    %flush del puerto
-    flushinput(puerto)
-    cla 
+
+    %cla 
 end
 
 end
 
-% --- Executes on selection change in Amplitud1.
+%Cambios en la Amplitud para el canal 1
 function Amplitud1_Callback(hObject, eventdata, handles)
-% hObject    handle to Amplitud1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 cla
 
 global Amplitud_ch1;
@@ -218,8 +197,6 @@ switch aux1
         Amplitud_ch1=3;
 end
 end
-% Hints: contents = cellstr(get(hObject,'String')) returns Amplitud1 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from Amplitud1
 
 
 % --- Executes during object creation, after setting all properties.
@@ -235,11 +212,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 end
 
-% --- Executes on selection change in Amplitud2.
+%Cambios para la Amplitud del canal 2
 function Amplitud2_Callback(hObject, eventdata, handles)
-% hObject    handle to Amplitud2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 cla
 global Amplitud_ch2;
 aux2=get(hObject,'Value');
@@ -251,8 +225,6 @@ switch aux2
     case 3
         Amplitud_ch2=3;
 end
-        % Hints: contents = cellstr(get(hObject,'String')) returns Amplitud2 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from Amplitud2
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -268,11 +240,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 end
 
-% --- Executes on selection change in timeBase.
+%Cambios en la BAse de tiempo
 function timeBase_Callback(hObject, eventdata, handles)
-% hObject    handle to timeBase (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 cla
 global ini;
 global fini;
@@ -296,8 +265,6 @@ global digit_1;
 digit_1=zeros(1,length(time));
 global digit_2;
 digit_2=zeros(1,length(time));
-% Hints: contents = cellstr(get(hObject,'String')) returns timeBase contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from timeBase
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -320,19 +287,15 @@ function Pantalla_ButtonDownFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 end
 
-% --- Executes when user attempts to close Osciloscopio.
+%Cerrado de la Aplicacion
 function Osciloscopio_CloseRequestFcn(hObject, eventdata, handles)
-% hObject    handle to Osciloscopio (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 set(handles.On_Off,'Value',2);
 instrreset;
-
-% Hint: delete(hObject) closes the figure
 delete(hObject);
 end
 
+%Botones o selectores que no cambian nada pero cuyo estado se revisa para
+%la ejecucion del programa
 
 % --- Executes on selection change in On_Off.
 function On_Off_Callback(hObject, eventdata, handles)

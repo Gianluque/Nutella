@@ -70,7 +70,7 @@ dac=3/(2^12);
 global ini;
 ini=0;
 global fini;
-fini=500;
+fini=800;
 global timeBase;
 timeBase=10;
 global time;
@@ -127,11 +127,11 @@ global b;
 global c;
 global d;
 %canales Analogicos
-
+j=50;
 
 while get(handles.On_Off,'Value')==1
     %busqueda de inicio y adquisicion de bytes
-    aux=[0 0 0 0 0 0 0];
+    
     aux=fread(puerto,[1,7],'uint8'); 
     i=1;
     while aux(i)>127
@@ -172,11 +172,12 @@ while get(handles.On_Off,'Value')==1
         %canales en dec
         chd1=bin2dec(chd_1);
         chd2=bin2dec(chd_2);
+        drawnow
         %shifteo y actualizacion de canales
         digit_1 = circshift(digit_1,1);
         digit_2 = circshift(digit_2,1);
         digit_1(1)=chd1*Amplitud_ch1;
-        digit_1(1)=chd2*Amplitud_ch2;    
+        digit_2(1)=chd2*Amplitud_ch2;    
         ch1_plot = circshift(ch1_plot,1);
         ch2_plot = circshift(ch2_plot,1);        
         ch1_plot(1)=ch1*Amplitud_ch1*dac;
@@ -185,18 +186,23 @@ while get(handles.On_Off,'Value')==1
         %grafico de canales
         cla;
         if get(handles.Alog_1,'Value')==1
-        plot(time,ch1_plot);
+        plot(time,ch1_plot,'b');
         hold on;
         end
         if get(handles.Alog_2,'Value')==1
-        plot(time,ch2_plot);
+        plot(time,ch2_plot,'r');
         end
         if get(handles.Digi_1,'Value')==1
-        plot(time,digit_1);
+        plot(time,digit_1,'g');
         end
         if get(handles.Digi_2,'Value')==1
-        plot(time,digit_2);
+        plot(time,digit_2,'y');
         end
+        if j==0
+        flushinput(puerto);
+        j=400;
+        end
+        j=j-1;
         drawnow;
 end
 cla
