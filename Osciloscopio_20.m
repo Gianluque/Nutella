@@ -34,8 +34,8 @@ fopen(puerto); %abre el puerto
 %Bases de Amplitud
 global Amplitud_ch1;
 global Amplitud_ch2;
-Amplitud_ch1=1;
-Amplitud_ch2=1;
+Amplitud_ch1=3;
+Amplitud_ch2=3;
 
 %Factor de conversion Digital Analogico (porque es a 12bit de presicion)
 global dac;
@@ -45,11 +45,11 @@ dac=3/(2^12);
 global ini;
 ini=0;
 global fini;
-fini=1000;
+fini=10;
 
 %Base de tiempo
 global timeBase;
-timeBase=10;
+timeBase=100;
 global time;
 time=linspace(ini,fini,timeBase);
 
@@ -144,6 +144,8 @@ while get(handles.On_Off,'Value')==1
         plot(time,ch1_plot,'b');
         end
         hold on;
+        grid on;
+        axis([0 5 0 5])
         if get(handles.Alog_2,'Value')==1
         plot(time,ch2_plot,'r');
         end
@@ -151,26 +153,26 @@ while get(handles.On_Off,'Value')==1
         plot(time,digit_1,'g');
         end
         if get(handles.Digi_2,'Value')==1
-        plot(time,digit_2,'y');
+        plot(time,digit_2,'m');
         end
         drawnow;
         i=i+4;
         elseif get(handles.plot_stem,'Value')==2
         cla;    
         if get(handles.Alog_1,'Value')==1
-        stem(time,ch1_plot,'b');
+        plot(time,ch1_plot,'b.');
         end
         hold on;        
         
         if get(handles.Alog_2,'Value')==1
-        stem(time,ch2_plot,'r');
+        plot(time,ch2_plot,'r.');
         end
         if get(handles.Digi_1,'Value')==1
-        stem(time,digit_1,'g');
+        plot(time,digit_1,'g.');
         end
         
         if get(handles.Digi_2,'Value')==1
-        stem(time,digit_2,'y');
+        plot(time,digit_2,'m.');
         end
         drawnow;    
         end
@@ -190,11 +192,11 @@ global Amplitud_ch1;
 aux1=get(hObject,'Value');
 switch aux1
     case 1
-        Amplitud_ch1=0.3;
+        Amplitud_ch1=3;
     case 2
         Amplitud_ch1=1;
     case 3
-        Amplitud_ch1=3;
+        Amplitud_ch1=0.3;
 end
 end
 
@@ -219,11 +221,11 @@ global Amplitud_ch2;
 aux2=get(hObject,'Value');
 switch aux2
     case 1
-        Amplitud_ch2=0.3;
+        Amplitud_ch2=3;
     case 2
         Amplitud_ch2=1;
     case 3
-        Amplitud_ch2=3;
+        Amplitud_ch2=0.3;
 end
 end
 
@@ -249,11 +251,11 @@ global timeBase;
 aux3=get(hObject,'Value');
 switch aux3
     case 1
-        timeBase=10;
-    case 2
         timeBase=100;
-    case 3
+    case 2
         timeBase=1000;
+    case 3
+        timeBase=10000;
 end
 global time;
 time=linspace(ini,fini,timeBase);
