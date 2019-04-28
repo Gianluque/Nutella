@@ -109,12 +109,12 @@ while get(handles.On_Off,'Value')==1
     end  
     
     bin=dec2bin(aux);    
-    while i<(buffersize-4)
+    while i<(buffersize-8)
        chauxAlog1= strcat(bin(i,3:8),bin(i+1,3:8));
        chauxdig1= bin(i,2); 
        chauxAlog2= strcat(bin(i+2,3:8),bin(i+3,3:8)); 
        chauxdig2= bin(i+2,2);
-       
+       i=i+4;
                %shifteo y actualizacion de canales
         digit_1 = circshift(digit_1,1);
         digit_2 = circshift(digit_2,1);
@@ -124,7 +124,7 @@ while get(handles.On_Off,'Value')==1
         ch2_plot = circshift(ch2_plot,1);        
         ch1_plot(1)=bin2dec(chauxAlog1)*Amplitud_ch1*dac;
         ch2_plot(1)=bin2dec(chauxAlog2)*Amplitud_ch2*dac;
-        
+       
         %Canales setm o plot
         
         if get(handles.plot_stem,'Value')==1
@@ -147,7 +147,7 @@ while get(handles.On_Off,'Value')==1
         plot(time,digit_2,'m');
         end
         drawnow;
-        i=i+4;
+       
         elseif get(handles.plot_stem,'Value')==2
         cla;    
         if get(handles.Alog_1,'Value')==1
@@ -167,9 +167,9 @@ while get(handles.On_Off,'Value')==1
         plot(time,digit_2,'m.');
         end
         drawnow;    
-        i=i+4;
-        end
         
+        end
+      
     end
 
     %cla 
