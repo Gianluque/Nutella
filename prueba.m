@@ -136,7 +136,7 @@ while get(handles.On_Off,'Value')==1
         end
         hold on;
         grid on;
-        axis([0 5 0 5])
+        axis([0 5 0 5]);
         if get(handles.Alog_2,'Value')==1
         plot(time,ch2_plot,'r');
         end
@@ -154,7 +154,8 @@ while get(handles.On_Off,'Value')==1
         plot(time,ch1_plot,'b.');
         end
         hold on;        
-        
+        grid on;
+        axis([0 5 0 5]);
         if get(handles.Alog_2,'Value')==1
         plot(time,ch2_plot,'r.');
         end
@@ -172,7 +173,7 @@ while get(handles.On_Off,'Value')==1
 
     %cla 
 end
-
+set(handles.On_Off,'Value',0);
 end
 
 %Cambios en la Amplitud para el canal 1
