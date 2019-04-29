@@ -91,7 +91,7 @@ global digit_1;
 global digit_2;
 
 %Tamano del buffer que recibe los datos del demo
-buffersize=480;
+buffersize=488;
 flush=0;
 %Codigo de graficado
 while get(handles.On_Off,'Value')==1
@@ -99,10 +99,10 @@ while get(handles.On_Off,'Value')==1
     aux=fread(puerto,[1,buffersize],'uint8'); 
   %      flush del puerto
     flush=flush+1;
-    if flush>2
+    %if flush>2
     flushinput(puerto)
-    flush=0;
-    end
+    %flush=0;
+   % end
     i=1;
     while aux(i)>127
         i=i+1;
