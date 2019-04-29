@@ -42,6 +42,9 @@ buffersize=488;
 flush=0;
 %Codigo de graficado
 a=4;
+z=3;
+stack=zeros(1,length(time));
+
 while a>1
     %busqueda de inicio y adquisicion de bytes
     aux=fread(puerto,[1,buffersize],'uint8'); 
@@ -63,6 +66,19 @@ while a>1
        chauxAlog2= strcat(bin(i+2,3:8),bin(i+3,3:8)); 
        chauxdig2= bin(i+2,2);
        i=i+4;
+       stack(1)=chauxAlog1;
+       stack=circshift(stack,1);
+       if z>1
+       z=z-1;
+       end
+       if z<1
+            if stack(1)!=stack(2)
+            a=0;
+            end
+            
+       end
+       
+       end
                %shifteo y actualizacion de canales
         digit_1 = circshift(digit_1,1);
         digit_2 = circshift(digit_2,1);
