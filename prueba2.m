@@ -41,8 +41,8 @@ digit_2=zeros(1,length(time));
 buffersize=488;
 flush=0;
 %Codigo de graficado
-a=;
-while a==1
+a=4;
+while a>1
     %busqueda de inicio y adquisicion de bytes
     aux=fread(puerto,[1,buffersize],'uint8'); 
   %      flush del puerto
@@ -55,7 +55,7 @@ while a==1
     while aux(i)>127
         i=i+1;
     end  
-    zzzz=i*120
+
     bin=dec2bin(aux);    
     while i<(buffersize-8)
        chauxAlog1= strcat(bin(i,3:8),bin(i+1,3:8));
