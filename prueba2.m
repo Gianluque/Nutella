@@ -41,6 +41,7 @@ digit_2=zeros(1,length(time));
 buffersize=488;
 flush=0;
 %Codigo de graficado
+a=;
 while a==1
     %busqueda de inicio y adquisicion de bytes
     aux=fread(puerto,[1,buffersize],'uint8'); 
@@ -89,6 +90,8 @@ while a==1
         end
       
     end
-a=0;
+a=a-1;
     %cla 
+   
 end
+instrreset;   
