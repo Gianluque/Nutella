@@ -41,7 +41,7 @@ digit_2=zeros(1,length(time));
 buffersize=488;
 flush=0;
 %Codigo de graficado
-a=4;
+a=2;
 z=3;
 stack=zeros(1,length(time));
 
@@ -66,13 +66,13 @@ while a>1
        chauxAlog2= strcat(bin(i+2,3:8),bin(i+3,3:8)); 
        chauxdig2= bin(i+2,2);
        i=i+4;
-       stack(1)=chauxAlog1;
+       stack(1)=bin2dec(chauxAlog1);
        stack=circshift(stack,1);
        if z>1
        z=z-1;
        end
        if z<1
-            if stack(1)!=stack(2)
+            if stack(1)~=stack(2)
             a=0;
             end
             
@@ -108,6 +108,5 @@ while a>1
     end
 a=a-1;
     %cla 
-   
-end
+    
 instrreset;   
